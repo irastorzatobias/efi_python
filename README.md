@@ -1,17 +1,22 @@
-## EFI Python - Irastorza - Olivero
-
-## API REST - TO DO w/ login
-https://vip2picallex.atlassian.net/browse/ITDR-266
+## API REST - TO DO w/ login (Olivero - Irastorza)
 
 ## Setup del proyecto
 
 - Inicializar xampp y crear base de datos 'todo'.
-- Correr las migraciones en flask a partir de los siguientes comandos:
+- Correr las migraciones en flask a partir de los siguientes comandos (borrar carpeta migraciones si ya hay una existente, al no estar dockerizado, puede existir un error al correr las mismas):
 ```python
     flask db init
     flask db migrate -m 'Initial migration'
     flask db upgrade
 ```
+## Login 
+```sql
+    - Metodo: GET
+    - Endpoint: 127.0.0.1/login 
+```
+
+# Importante
+##### Para hacer uso de los endpoints de admin, es necesario logearse y obtener el x-access-token que nos brinda la API, a traves del mismo se corroborara si un usuario es admin o no, este valor es necesario que se coloque en los headers a la hora de realizar una peticion.
 
 ## Endpoints disponibles admin
 #### Obtener todos los usuarios: 
@@ -24,7 +29,7 @@ https://vip2picallex.atlassian.net/browse/ITDR-266
 ```sql
     - Metodo: GET
     - URL Parameter: public_id
-    - Endpoint: 127.0.0.1/user/737
+    - Endpoint: 127.0.0.1/user/<public_id>
 ```
 
 #### Crear un usuario: 
@@ -38,14 +43,14 @@ https://vip2picallex.atlassian.net/browse/ITDR-266
 ```sql
     - Metodo: PUT
     - URL Parameter: public_id
-    - Ejemplo: 127.0.0.1/user/737
+    - Ejemplo: 127.0.0.1/user/<public_id>
 ```
 
 #### Borrar usuario: 
 ```sql
     - Metodo: DELETE
     - URL Parameter: public_id
-    - Ejemplo: 127.0.0.1/user/737
+    - Ejemplo: 127.0.0.1/user/<public_id>
 ```
 
 ## Endpoints disponibles to do app
@@ -55,32 +60,32 @@ https://vip2picallex.atlassian.net/browse/ITDR-266
     - Endpoint: 127.0.0.1/todo
 ```
 
-#### Obtener un usuario: 
+#### Obtener una tarea: 
 ```sql
     - Metodo: GET
-    - URL Parameter: public_id
-    - Endpoint: 127.0.0.1/user/737
+    - URL Parameter: todo_id
+    - Endpoint: 127.0.0.1/todo/<todo_id>
 ```
 
-#### Crear un usuario: 
+#### Crear una tarea: 
 ```sql
     - Metodo: POST
-    - Ejemplo body: { "name": "Quiricocho", "password": "1234" }
-    - Ejemplo: 127.0.0.1/user
+    - Ejemplo body: { "text": "Lavar los platos" }
+    - Ejemplo: 127.0.0.1/todo
 ```
 
-#### Hacer admin a un usuario (cambia el booleano de la base de datos, y le otorga permisos de admin): 
+#### Marcar tarea como completada: 
 ```sql
     - Metodo: PUT
-    - URL Parameter: public_id
-    - Ejemplo: 127.0.0.1/user/737
+    - URL Parameter: todo_id
+    - Ejemplo: 127.0.0.1/todo/<todo_id>
 ```
 
-#### Borrar usuario: 
+#### Borrar tarea: 
 ```sql
     - Metodo: DELETE
-    - URL Parameter: public_id
-    - Ejemplo: 127.0.0.1/user/737
+    - URL Parameter: todo_id
+    - Ejemplo: 127.0.0.1/todo/<todo_id>
 ```
 
 
