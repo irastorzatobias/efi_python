@@ -12,6 +12,10 @@
     docker compose down;docker compose up -d --force-recreate --build
 ```
 
+# Contraseña base de datos:
+```bash
+    password
+```
 
 ## En caso de tener problemas con composer y querer correrlo local realizar los siguientes comandos
 - Instalar dependencias (Composer ya lo realiza)
