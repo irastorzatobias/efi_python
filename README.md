@@ -3,6 +3,7 @@
 ## Setup del proyecto
 - Correr docker compose
 ```bash
+    docker network create db_backend (Si da problemas a la hora de levantar la db)
     docker compose up -d --build
     docker compose logs -f
 ```
