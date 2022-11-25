@@ -1,5 +1,4 @@
-from flask import Flask, request, jsonify, make_response
-from flask_sqlalchemy import SQLAlchemy
+from flask import request, jsonify, make_response
 from flask_migrate import Migrate
 from extensions import db, app
 
@@ -64,7 +63,7 @@ def get_one_user(current_user, public_id):
     user = helpers.find_user(models.User, public_id)
 
     if not user:
-        helpers.no_user_found()
+        return helpers.no_user_found()
 
     formatted_user = helpers.build_user(user)
 
@@ -88,14 +87,14 @@ def promote_user(public_id):
     user = helpers.find_user(models.User, public_id)
 
     if not user:
-        helpers.no_user_found()
+        return helpers.no_user_found()
 
     user.admin = True
 
     db.session.commit()
     return jsonify({'message': 'The user now is admin'})
 
-@app.route('/user/<user_id>', methods=['DELETE'])
+@app.route('/user/<public_id>', methods=['DELETE'])
 @token_required
 def delete_user(current_user, public_id):
     if not current_user.admin:
@@ -104,7 +103,7 @@ def delete_user(current_user, public_id):
     user = helpers.find_user(models.User, public_id)
 
     if not user:
-        helpers.no_user_found()
+        return helpers.no_user_found()
 
     db.session.delete(user)
     db.session.commit()
@@ -121,7 +120,7 @@ def login():
     user = models.User.query.filter_by(name=auth.username).first()
 
     if not user:
-        helpers.no_user_found()
+        return helpers.no_user_found()
 
     if check_password_hash(user.password, auth.password):
         token = jwt.encode({'public_id': user.public_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes = 30)}, app.config['SECRET_KEY'] ) # Login de 5 minutos, la key va a ser usada para el encode del token
