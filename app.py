@@ -72,10 +72,7 @@ def get_one_user(current_user, public_id):
     return jsonify({"user": formatted_user})
 
 @app.route('/user', methods=['POST'])
-@token_required
-def create_user(current_user):
-    if not current_user.admin:
-        return jsonify({'message': 'Cannot perform that action'})
+def create_user():
 
     data = request.get_json()
     hashed_password = generate_password_hash(data['password'], method='sha256')
@@ -88,11 +85,7 @@ def create_user(current_user):
 
 
 @app.route('/user/<public_id>', methods=['PUT'])
-@token_required
-def promote_user(current_user ,public_id):
-    if not current_user.admin:
-        return jsonify({'message': 'Cannot perform that action'})
-
+def promote_user(public_id):
     user = helpers.find_user(models.User, public_id)
 
     if not user:
@@ -199,4 +192,4 @@ def delete_todo(current_user, todo_id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)

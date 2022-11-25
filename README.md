@@ -1,7 +1,15 @@
 ## API REST - TO DO w/ login (Olivero - Irastorza)
 
 ## Setup del proyecto
-
+- Correr docker compose
+```bash
+    docker compose up -d --build
+    docker compose logs -f
+```
+- Instalar dependencias (Composer ya lo realiza)
+```bash
+    pip install requirements.txt
+```
 - Inicializar xampp y crear base de datos 'todo'.
 - Correr las migraciones en flask a partir de los siguientes comandos (borrar carpeta migraciones si ya hay una existente, al no estar dockerizado, puede existir un error al correr las mismas):
 ```python
