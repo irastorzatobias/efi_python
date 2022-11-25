@@ -6,6 +6,7 @@
     docker compose up -d --build
     docker compose logs -f
 ```
+## En caso de tener problemas con composer y querer correrlo local realizar los siguientes comandos
 - Instalar dependencias (Composer ya lo realiza)
 ```bash
     pip install requirements.txt
