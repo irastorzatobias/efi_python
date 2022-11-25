@@ -48,14 +48,14 @@
     - Endpoint: 127.0.0.1/user/<public_id>
 ```
 
-#### Crear un usuario: 
+#### Crear un usuario: (Estaba pensado para que sea solo de admin, pero por la falta de seeders y no crear cuenta admin en migraciones, lo dejamos publico)
 ```sql
     - Metodo: POST
     - Ejemplo body: { "name": "Quiricocho", "password": "1234" }
     - Ejemplo: 127.0.0.1/user
 ```
 
-#### Hacer admin a un usuario (cambia el booleano de la base de datos, y le otorga permisos de admin): 
+#### Hacer admin a un usuario (idem aclaraciones crear usuario): 
 ```sql
     - Metodo: PUT
     - URL Parameter: public_id
