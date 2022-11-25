@@ -7,6 +7,12 @@
     docker compose up -d --build
     docker compose logs -f
 ```
+## Rebuildeo en caso de error
+```bash
+    docker compose down;docker compose up -d --force-recreate --build
+```
+
+
 ## En caso de tener problemas con composer y querer correrlo local realizar los siguientes comandos
 - Instalar dependencias (Composer ya lo realiza)
 ```bash

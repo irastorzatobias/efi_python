@@ -13,7 +13,6 @@ import datetime
 from functools import wraps
 
 migrate = Migrate(app, db)
-
 # Decorador para trabajar con el token
 def token_required(f):
     @wraps(f)
